@@ -1,5 +1,7 @@
 # Network Security Lab
 
+> 🚧 **Work in progress.** This lab is being built in phases. Phase 1 of 8 is complete, see [Progress](#progress) for status.
+
 A small enterprise network built in Cisco Packet Tracer, with a focus on segmentation and device hardening. The lab is built in phases, and each phase is documented here as it is completed.
 
 ![Topology](docs/topology.png)
