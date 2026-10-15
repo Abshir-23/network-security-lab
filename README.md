@@ -1,28 +1,28 @@
-# Network Security Lab
+# Nettverkssikkerhetslab
 
-> 🚧 **Work in progress.** This lab is being built in phases. Phase 1 of 8 is complete, see [Progress](#progress) for status.
+> 🚧 **Under arbeid.** Laben bygges i faser. Fase 1 av 8 er ferdig, se [Fremdrift](#fremdrift) for status.
 
-A small enterprise network built in Cisco Packet Tracer, with a focus on segmentation and device hardening. The lab is built in phases, and each phase is documented here as it is completed.
+Et lite bedriftsnettverk bygget i Cisco Packet Tracer, med fokus på segmentering og herding av enheter. Laben bygges i faser, og hver fase dokumenteres her etter hvert som den blir ferdig.
 
-![Topology](docs/topology.png)
+![Topologi](docs/topology.png)
 
-## Goal
+## Mål
 
-Design a network for a small office where staff, administrators and guests share the same physical infrastructure, but are kept apart logically. Guests should reach the internet only, staff should reach shared services, and only admins should manage network devices.
+Designe et nettverk for et lite kontor der ansatte, administratorer og gjester deler den samme fysiske infrastrukturen, men holdes logisk adskilt. Gjester skal bare nå internett, ansatte skal nå felles tjenester, og bare administratorer skal kunne administrere nettverksenhetene.
 
-## Topology
+## Topologi
 
-| Device | Model | Role |
+| Enhet | Modell | Rolle |
 |---|---|---|
-| Router0 | Cisco 2911 | Gateway, inter-VLAN routing, ACLs |
-| Switch0 | Cisco 2960 | Access switch, uplink to router |
-| Switch1 | Cisco 2960 | Access switch |
-| Server0 | Server-PT | Internal services (DHCP, web) |
-| PC0 to PC5 | PC-PT | End users |
+| Router0 | Cisco 2911 | Gateway, ruting mellom VLAN, ACL |
+| Switch0 | Cisco 2960 | Aksessvitsj, opplink til ruteren |
+| Switch1 | Cisco 2960 | Aksessvitsj |
+| Server0 | Server-PT | Interne tjenester (DHCP, web) |
+| PC0 til PC5 | PC-PT | Sluttbrukere |
 
-### Cabling
+### Kabling
 
-| From | Port | To | Port |
+| Fra | Port | Til | Port |
 |---|---|---|---|
 | Router0 | G0/0 | Switch0 | G0/1 |
 | Switch0 | G0/2 | Switch1 | G0/1 |
@@ -30,38 +30,38 @@ Design a network for a small office where staff, administrators and guests share
 | Server0 | Fa0 | Switch0 | Fa0/4 |
 | PC3, PC4, PC5 | Fa0 | Switch1 | Fa0/1, Fa0/2, Fa0/3 |
 
-### Planned addressing
+### Planlagt adressering
 
-| VLAN | Name | Subnet | Gateway |
+| VLAN | Navn | Subnett | Gateway |
 |---|---|---|---|
 | 10 | Admin | 192.168.10.0/24 | 192.168.10.1 |
-| 20 | Ansatte (Staff) | 192.168.20.0/24 | 192.168.20.1 |
-| 30 | Gjest (Guest) | 192.168.30.0/24 | 192.168.30.1 |
-| 99 | Management | 192.168.99.0/24 | 192.168.99.1 |
+| 20 | Ansatte | 192.168.20.0/24 | 192.168.20.1 |
+| 30 | Gjest | 192.168.30.0/24 | 192.168.30.1 |
+| 99 | Administrasjon | 192.168.99.0/24 | 192.168.99.1 |
 
-## Progress
+## Fremdrift
 
-- [x] **Phase 1:** Topology and cabling
-- [ ] **Phase 2:** VLANs and trunking
-- [ ] **Phase 3:** Router on a stick (inter-VLAN routing)
-- [ ] **Phase 4:** DHCP per VLAN
-- [ ] **Phase 5:** Device hardening (SSH, passwords, banners)
-- [ ] **Phase 6:** Access control lists
-- [ ] **Phase 7:** Port security
-- [ ] **Phase 8:** Testing and final report
+- [x] **Fase 1:** Topologi og kabling
+- [ ] **Fase 2:** VLAN og trunking
+- [ ] **Fase 3:** Router on a stick (ruting mellom VLAN)
+- [ ] **Fase 4:** DHCP per VLAN
+- [ ] **Fase 5:** Herding av enheter (SSH, passord, bannere)
+- [ ] **Fase 6:** Tilgangslister (ACL)
+- [ ] **Fase 7:** Portsikkerhet
+- [ ] **Fase 8:** Testing og sluttrapport
 
-## Phase 1: Topology and cabling
+## Fase 1: Topologi og kabling
 
-All devices are connected with copper straight-through cables. The links between the switches and end devices come up right away. The link to the router stays down for now, since router interfaces are administratively shut down by default. It will be brought up in phase 3, when the subinterfaces are configured.
+Alle enhetene er koblet sammen med rette kobberkabler. Koblingene mellom svitsjene og sluttbrukerenhetene kommer opp med en gang. Koblingen til ruteren er nede foreløpig, fordi grensesnittene på en ruter er administrativt slått av som standard. Den blir slått på i fase 3, når undergrensesnittene konfigureres.
 
-## Files
+## Filer
 
-| File | Content |
+| Fil | Innhold |
 |---|---|
-| `network-security-lab.pkt` | Packet Tracer project (open with Packet Tracer 9.0 or newer) |
-| `configs/` | Running configs exported from each device, added per phase |
-| `docs/` | Screenshots and test results |
+| `network-security-lab.pkt` | Packet Tracer-prosjektet (åpnes med Packet Tracer 9.0 eller nyere) |
+| `configs/` | Kjørende konfigurasjoner eksportert fra hver enhet, legges til per fase |
+| `docs/` | Skjermbilder og testresultater |
 
-## Tools
+## Verktøy
 
 Cisco Packet Tracer 9.0, Cisco IOS CLI
